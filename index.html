@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate Generator</title>
+  </head>
+  <body>
+    <form id="certificateForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+      <label for="date">Date:</label>
+      <input type="date" id="date" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      document.getElementById("certificateForm").addEventListener("submit", async function (e) {
+        e.preventDefault(); // Prevent form from refreshing
+
+        try {
+          const name = document.getElementById("name").value;
+          const date = document.getElementById("date").value;
+
+          // Make POST request to backend
+          const response = await fetch("/get-certificate", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, date }),
+          });
+
+          // Handle PDF download
+          if (response.ok) {
+            const blob = await response.blob(); // Get the binary response (PDF)
+            const url = window.URL.createObjectURL(blob); // Create a downloadable URL
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "certificate.pdf"; // Filename for the downloaded PDF
+            document.body.appendChild(a);
+            a.click();
+            a.remove(); // Clean up
+          } else {
+            alert("Failed to generate certificate");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    </script>
+  </body>
+</html>
