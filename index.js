@@ -97,14 +97,13 @@ server.post("/get-certificate", async (req, res) => {
     doc.pipe(res);
 
     // Add the image, positioning it at the top-left corner of the page
-    doc.image(path.join(__dirname, "cert.png"), 0, 0, {
+    doc.image(path.join(__dirname, "cert.jpg"), 0, 0, {
       width: 2000,
       height: 1414,
     });
 
-    doc.font()
     // Insert user's name
-    doc.fontSize(100).text(name, 700, 600)
+    doc.fontSize(100).text(name, 700, 610);
     // Finalize the PDF and end the stream
     doc.end();
   } catch (error) {
