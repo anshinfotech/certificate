@@ -63,10 +63,10 @@ server.get("/", (req, res) => {
 server.post("/get-certificate", async (req, res) => {
   const { name, fatherName, email, college, mobile } = req.body;
   try {
-    const existingUser = await userModel.findOne({ email, mobile });
-    if (existingUser) {
-      return res.status(200).sendFile(path.join(__dirname, "./Error.html"));
-    }
+    // const existingUser = await userModel.findOne({ email, mobile });
+    // if (existingUser) {
+    //   return res.status(200).sendFile(path.join(__dirname, "./Error.html"));
+    // }
 
     const newUser = await userModel.create({
       name,
@@ -89,21 +89,22 @@ server.post("/get-certificate", async (req, res) => {
     res.setHeader("Pragma", "no-cache");
     res.setHeader("Expires", "0");
 
-    const doc = new PDFDocument();
+    // Add certificate background
+    // Create a custom-sized page to fit the image size (2000x1414)
+    const doc = new PDFDocument({
+      size: [2000, 1414], // Custom page size matching the image
+    });
     doc.pipe(res);
 
-    // Add certificate background
-    doc.image(path.join(__dirname, "cert.jpg"), 0, 0, {
-      width: 1395,
-      height: 1942,
+    // Add the image, positioning it at the top-left corner of the page
+    doc.image(path.join(__dirname, "cert.png"), 0, 0, {
+      width: 2000,
+      height: 1414,
     });
 
+    doc.font()
     // Insert user's name
-    doc.fontSize(25).text(name, 200, 300);
-
-    // Insert additional text
-    doc.fontSize(15).text("Congratulations on your achievement!", 200, 400);
-
+    doc.fontSize(100).text(name, 700, 600)
     // Finalize the PDF and end the stream
     doc.end();
   } catch (error) {
