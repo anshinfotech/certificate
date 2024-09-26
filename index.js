@@ -60,7 +60,11 @@ server.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html")); // Corrected path
 });
 
-server.get("/get-certificate", async (req, res) => {
+server.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "Error.html")); // Error path
+});
+
+server.post("/get-certificate", async (req, res) => {
   const { name, fatherName, email, college, mobile } = req.body;
   try {
     // const existingUser = await userModel.findOne({ email, mobile });
@@ -68,13 +72,13 @@ server.get("/get-certificate", async (req, res) => {
     //   return res.status(200).sendFile(path.join(__dirname, "./Error.html"));
     // }
 
-    // const newUser = await userModel.create({
-    //   name,
-    //   fatherName,
-    //   email,
-    //   mobile,
-    //   college,
-    // });
+    const newUser = await userModel.create({
+      name,
+      fatherName,
+      email,
+      mobile,
+      college,
+    });
 
     res.setHeader(
       "Content-disposition",
