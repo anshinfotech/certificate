@@ -60,7 +60,7 @@ server.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html")); // Corrected path
 });
 
-server.post("/get-certificate", async (req, res) => {
+server.get("/get-certificate", async (req, res) => {
   const { name, fatherName, email, college, mobile } = req.body;
   try {
     // const existingUser = await userModel.findOne({ email, mobile });
@@ -68,13 +68,13 @@ server.post("/get-certificate", async (req, res) => {
     //   return res.status(200).sendFile(path.join(__dirname, "./Error.html"));
     // }
 
-    const newUser = await userModel.create({
-      name,
-      fatherName,
-      email,
-      mobile,
-      college,
-    });
+    // const newUser = await userModel.create({
+    //   name,
+    //   fatherName,
+    //   email,
+    //   mobile,
+    //   college,
+    // });
 
     res.setHeader(
       "Content-disposition",
@@ -99,7 +99,7 @@ server.post("/get-certificate", async (req, res) => {
     //   width: 2000,
     //   height: 1414,
     // });
-    // doc.fontSize(100).text(name, 700, 610);
+    // doc.fontSize(100).text(name, 0, 610 , {align : "center"});
 
     // 2) 
     //********   Grur Nanak Dev Engineering College    ************
@@ -107,7 +107,7 @@ server.post("/get-certificate", async (req, res) => {
       width: 2000,
       height: 1414,
     });
-    doc.fontSize(100).text(name, 640, 720);
+    doc.fontSize(100).text(name, 0, 720 , {align : 'center'});
 
     // Finalize the PDF and end the stream
     doc.end();
