@@ -76,7 +76,6 @@ server.post("/get-certificate", async (req, res) => {
       college,
     });
 
-    // Set headers for PDF download and prevent caching
     res.setHeader(
       "Content-disposition",
       "attachment; filename=certificate.pdf"
@@ -89,21 +88,27 @@ server.post("/get-certificate", async (req, res) => {
     res.setHeader("Pragma", "no-cache");
     res.setHeader("Expires", "0");
 
-    // Add certificate background
-    // Create a custom-sized page to fit the image size (2000x1414)
     const doc = new PDFDocument({
       size: [2000, 1414], // Custom page size matching the image
     });
     doc.pipe(res);
 
-    // Add the image, positioning it at the top-left corner of the page
-    doc.image(path.join(__dirname, "cert.jpg"), 0, 0, {
+    // 1)
+    //*********   Lyallpur Khalsa College  ***********
+    // doc.image(path.join(__dirname, "cert.jpg"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(100).text(name, 700, 610);
+
+    // 2) 
+    //********   Grur Nanak Dev Engineering College    ************
+    doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
       width: 2000,
       height: 1414,
     });
+    doc.fontSize(100).text(name, 640, 720);
 
-    // Insert user's name
-    doc.fontSize(100).text(name, 700, 610);
     // Finalize the PDF and end the stream
     doc.end();
   } catch (error) {
