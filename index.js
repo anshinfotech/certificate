@@ -77,6 +77,10 @@ server.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html")); // Corrected path
 });
 
+server.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "Error.html")); // Error path
+});
+
 server.post("/get-certificate", async (req, res) => {
   const { name, fatherName, email, college, mobile, sem, stream, course } =
     req.body;
@@ -108,6 +112,7 @@ server.post("/get-certificate", async (req, res) => {
       res.setHeader("Pragma", "no-cache");
       res.setHeader("Expires", "0");
 
+<<<<<<< HEAD
       // Add certificate background
       // Create a custom-sized page to fit the image size (2000x1414)
       const doc = new PDFDocument({
@@ -130,6 +135,43 @@ server.post("/get-certificate", async (req, res) => {
         .status(500)
         .send({ success: false, message: "Email or Mobile already exists" });
     }
+=======
+    res.setHeader(
+      "Content-disposition",
+      "attachment; filename=certificate.pdf"
+    );
+    res.setHeader("Content-type", "application/pdf");
+    res.setHeader(
+      "Cache-Control",
+      "no-store, no-cache, must-revalidate, proxy-revalidate"
+    );
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+
+    const doc = new PDFDocument({
+      size: [2000, 1414], // Custom page size matching the image
+    });
+    doc.pipe(res);
+
+    // 1)
+    //*********   Lyallpur Khalsa College  ***********
+    // doc.image(path.join(__dirname, "cert.jpg"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(100).text(name, 0, 610 , {align : "center"});
+
+    // 2) 
+    //********   Grur Nanak Dev Engineering College    ************
+    doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
+      width: 2000,
+      height: 1414,
+    });
+    doc.fontSize(100).text(name, 0, 720 , {align : 'center'});
+
+    // Finalize the PDF and end the stream
+    doc.end();
+>>>>>>> 32cf52d4d6f48f9b3a30636c40e892b9d51e8058
   } catch (error) {
     console.log(error);
     res.status(500).send("Error generating certificate");
