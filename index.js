@@ -127,7 +127,16 @@ server.post("/get-certificate", async (req, res) => {
 
       // 2)
       //********   Grur Nanak Dev Engineering College    ************
-      doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
+      // doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
+      //   width: 2000,
+      //   height: 1414,
+      // });
+      // doc.fontSize(100).text(name, 0, 720, { align: "center" });
+
+
+            // 3)
+      //********   Ramgarhia Institue of engeniring and technology (Riet)    ************
+      doc.image(path.join(__dirname, "Riet.jpg"), 0, 0, {
         width: 2000,
         height: 1414,
       });
