@@ -380,61 +380,60 @@
       })();
     </script>
     <script>
-      document
-        .getElementById("certificateForm")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault(); // Prevent form from refreshing
+  document
+  .getElementById("certificateForm")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault(); // Prevent form from refreshing
 
-          try {
-            const name = document.getElementById("name").value;
-            const fatherName = document.getElementById("father-name").value;
-            const email = document.getElementById("email").value;
-            const college = document.getElementById("college").value;
-            const mobile = document.getElementById("mobile").value;
-            const sem = document.getElementById("sem").value;
-            const stream = document.getElementById("stream").value;
-            const course = document.getElementById("course").value;
+    try {
+      const name = document.getElementById("name").value;
+      const fatherName = document.getElementById("father-name").value;
+      const email = document.getElementById("email").value;
+      const college = document.getElementById("college").value;
+      const mobile = document.getElementById("mobile").value;
+      const sem = document.getElementById("sem").value;
+      const stream = document.getElementById("stream").value;
+      const course = document.getElementById("course").value;
 
-            // Make POST request to backend
-            const response = await fetch("/get-certificate", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                name,
-                fatherName,
-                email,
-                college,
-                mobile,
-                sem,
-                stream,
-                course,
-              }),
-            });
+      // Make POST request to backend
+      const response = await fetch("/get-certificate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          fatherName,
+          email,
+          college,
+          mobile,
+          sem,
+          stream,
+          course,
+        }),
+      });
 
-            let res = await response.json();
+      // Check if response is PDF (binary)
+      if (response.ok && response.headers.get("content-type") === "application/pdf") {
+        const blob = await response.blob(); // Get the binary response (PDF)
+        const url = window.URL.createObjectURL(blob); // Create a downloadable URL
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "certificate.pdf"; // Filename for the downloaded PDF
+        document.body.appendChild(a);
+        a.click();
+        a.remove(); // Clean up
+      } else {
+        const res = await response.json();
+        if (res.success === false) {
+          alert(res.message);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
-            // Handle PDF download
-            if (response.ok) {
-              const blob = await response.blob(); // Get the binary response (PDF)
-              const url = window.URL.createObjectURL(blob); // Create a downloadable URL
-              const a = document.createElement("a");
-              a.href = url;
-              a.download = "certificate.pdf"; // Filename for the downloaded PDF
-              document.body.appendChild(a);
-              a.click();
-              a.remove(); // Clean up
-            } else {
-              if (res.success === false) {
-                alert(res.message);
-                return;
-              }
-            }
-          } catch (error) {
-            console.log(error);
-          }
-        });
     </script>
   </body>
 </html>
