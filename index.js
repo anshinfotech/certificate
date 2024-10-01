@@ -167,12 +167,12 @@ server.post("/get-certificate", async (req, res) => {
 
     
       // 1)
-      //*********   Lyallpur Khalsa College  ***********
-      // doc.image(path.join(__dirname, "cert.jpg"), 0, 0, {
-      //   width: 2000,
-      //   height: 1414,
-      // });
-      // doc.fontSize(100).text(name, 0, 610 , {align : "center"});
+      // *********   Lyallpur Khalsa College  ***********
+      doc.image(path.join(__dirname, "cert.jpg"), 0, 0, {
+        width: 2000,
+        height: 1414,
+      });
+      doc.fontSize(100).text(name, 0, 610 , {align : "center"});
 
       // 2)
       //********   Grur Nanak Dev Engineering College    ************
@@ -186,11 +186,11 @@ server.post("/get-certificate", async (req, res) => {
             // 3)
       //********   Ramgarhia Institue of engeniring and technology (Riet)    ************
 
-    doc.image(path.join(__dirname, "Riet.jpg"), 0, 0, {
-      width: 2000,
-      height: 1414,
-    });
-    doc.fontSize(100).text(name, 0, 700, { align: "center" });
+    // doc.image(path.join(__dirname, "Riet.jpg"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(100).text(name, 0, 700, { align: "center" });
 
     // Finalize the PDF and end the stream
     doc.end();
