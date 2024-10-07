@@ -105,13 +105,21 @@ server.post("/get-certificate", async (req, res) => {
     // });
     // doc.fontSize(100).text(name, 0, 610 , {align : "center"});
 
-    // 2) 
+    // 2)
     //********   Grur Nanak Dev Engineering College    ************
-    doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
+    // doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
+    // width: 2000,
+    // height: 1414,
+    // });
+    // doc.fontSize(100).text(name, 0, 720 , {align : 'center'});
+
+    // 3)
+    //********   Gulzar Group of Industries    ************
+    doc.image(path.join(__dirname, "GGI.jpg"), 0, 0, {
       width: 2000,
       height: 1414,
     });
-    doc.fontSize(100).text(name, 0, 720 , {align : 'center'});
+    doc.fontSize(80).text(name, 0, 720, { align: "center" });
 
     // Finalize the PDF and end the stream
     doc.end();
