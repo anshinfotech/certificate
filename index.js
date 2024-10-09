@@ -157,8 +157,15 @@ server.post("/get-certificate", async (req, res) => {
 
     // 5)
     //********   Gulzar Group Of Institutions    ************
+    // doc.image(path.join(__dirname, "GGSU.jpg"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
-    doc.image(path.join(__dirname, "GGSU.jpg"), 0, 0, {
+     // 6)
+    //********   Digital Marketing Arya College    ************
+    doc.image(path.join(__dirname, "DM_ARYA.jpg"), 0, 0, {
       width: 2000,
       height: 1414,
     });
