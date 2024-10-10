@@ -131,11 +131,11 @@ server.post("/get-certificate", async (req, res) => {
 
     // 2)
     //********   Grur Nanak Dev Engineering College    ************
-    doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
-      width: 2000,
-      height: 1414,
-    });
-    doc.fontSize(100).text(name, 0, 720, { align: "center" });
+    // doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(100).text(name, 0, 720, { align: "center" });
 
     // 3)
     //********   Ramgarhia Institue of engeniring and technology (Riet)    ************
@@ -169,6 +169,14 @@ server.post("/get-certificate", async (req, res) => {
     //   height: 1414,
     // });
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
+
+     // 6)
+    //********  Cyber Security DAV University    ************
+    doc.image(path.join(__dirname, "CS_DAV.png"), 0, 0, {
+      width: 2000,
+      height: 1414,
+    });
+    doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
     // Finalize the PDF and end the stream
     doc.end();
