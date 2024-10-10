@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
-
 const path = require("path");
 
 server.use(express.json());
@@ -15,6 +14,7 @@ server.use(
     origin: "*",
   })
 );
+
 const DB = async () => {
   try {
     await mongoose.connect(
@@ -73,6 +73,13 @@ const userSchema = new mongoose.Schema(
 
 const userModel = mongoose.model("Users", userSchema);
 
+// Function to validate mobile number
+const isValidMobileNumber = (mobile) => {
+  // Regular expression for a 10-digit mobile number (Indian format)
+  const mobileRegex = /^[6-9]\d{9}$/;
+  return mobileRegex.test(mobile);
+};
+
 server.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html")); // Corrected path
 });
@@ -84,6 +91,12 @@ server.get("/*", (req, res) => {
 server.post("/get-certificate", async (req, res) => {
   const { name, fatherName, email, college, mobile, sem, stream, course } =
     req.body;
+
+  // Validate mobile number
+  if (!isValidMobileNumber(mobile)) {
+    return res.status(400).send({ success: false, message: "Invalid mobile number" });
+  }
+
   try {
     let user = await userModel.findOne({ email, mobile });
 
@@ -121,7 +134,8 @@ server.post("/get-certificate", async (req, res) => {
     // Generate the certificate PDF based on the college
     // Use the appropriate college template
 
-    // 1)
+    // Uncomment the desired college template below:
+
     // *********   Lyallpur Khalsa College  ***********
     // doc.image(path.join(__dirname, "cert.jpg"), 0, 0, {
     //   width: 2000,
@@ -129,49 +143,35 @@ server.post("/get-certificate", async (req, res) => {
     // });
     // doc.fontSize(100).text(name, 0, 610 , {align : "center"});
 
-    // 2)
-    //********   Grur Nanak Dev Engineering College    ************
+    // ********   Grur Nanak Dev Engineering College    ************
     // doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
     //   width: 2000,
     //   height: 1414,
     // });
     // doc.fontSize(100).text(name, 0, 720, { align: "center" });
 
-    // 3)
-    //********   Ramgarhia Institue of engeniring and technology (Riet)    ************
-
+    // ********   Ramgarhia Institue of engeniring and technology (Riet)    ************
     // doc.image(path.join(__dirname, "Riet.jpg"), 0, 0, {
     //   width: 2000,
     //   height: 1414,
     // });
     // doc.fontSize(100).text(name, 0, 720, { align: "center" });
 
-    // 4)
-    //********  Gulzar Group Of Institutions    ************
+    // ********  Gulzar Group Of Institutions    ************
     // doc.image(path.join(__dirname, "GGI.jpg"), 0, 0, {
     //   width: 2000,
     //   height: 1414,
     // });
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
-    // 5)
-    //********   Gulzar Group Of Institutions    ************
-    // doc.image(path.join(__dirname, "GGSU.jpg"), 0, 0, {
-    //   width: 2000,
-    //   height: 1414,
-    // });
-    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
-
-     // 6)
-    //********   Digital Marketing Arya College    ************
+    // ********   Digital Marketing Arya College    ************
     // doc.image(path.join(__dirname, "DM_ARYA.png"), 0, 0, {
     //   width: 2000,
     //   height: 1414,
     // });
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
-     // 6)
-    //********  Cyber Security DAV University    ************
+    // ********  Cyber Security DAV University    ************
     doc.image(path.join(__dirname, "CS_DAV.png"), 0, 0, {
       width: 2000,
       height: 1414,
