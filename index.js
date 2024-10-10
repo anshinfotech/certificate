@@ -131,11 +131,11 @@ server.post("/get-certificate", async (req, res) => {
 
     // 2)
     //********   Grur Nanak Dev Engineering College    ************
-    // doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
-    //   width: 2000,
-    //   height: 1414,
-    // });
-    // doc.fontSize(100).text(name, 0, 720, { align: "center" });
+    doc.image(path.join(__dirname, "GNE.jpg"), 0, 0, {
+      width: 2000,
+      height: 1414,
+    });
+    doc.fontSize(100).text(name, 0, 720, { align: "center" });
 
     // 3)
     //********   Ramgarhia Institue of engeniring and technology (Riet)    ************
@@ -148,7 +148,6 @@ server.post("/get-certificate", async (req, res) => {
 
     // 4)
     //********  Gulzar Group Of Institutions    ************
-
     // doc.image(path.join(__dirname, "GGI.jpg"), 0, 0, {
     //   width: 2000,
     //   height: 1414,
@@ -165,11 +164,11 @@ server.post("/get-certificate", async (req, res) => {
 
      // 6)
     //********   Digital Marketing Arya College    ************
-    doc.image(path.join(__dirname, "DM_ARYA.png"), 0, 0, {
-      width: 2000,
-      height: 1414,
-    });
-    doc.fontSize(75).text(name, 0, 720, { align: "center" });
+    // doc.image(path.join(__dirname, "DM_ARYA.png"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
     // Finalize the PDF and end the stream
     doc.end();
