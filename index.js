@@ -173,7 +173,15 @@ server.post("/get-certificate", async (req, res) => {
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
     // ********  Cyber Security DAV University    ************
-    doc.image(path.join(__dirname, "CS_DAV.png"), 0, 0, {
+    // doc.image(path.join(__dirname, "CS_DAV.png"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
+
+
+     // ********  RIMT College Mandi Gobindgarh    ************
+    doc.image(path.join(__dirname, "RIMT.png"), 0, 0, {
       width: 2000,
       height: 1414,
     });
