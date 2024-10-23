@@ -187,15 +187,22 @@ server.post("/get-certificate", async (req, res) => {
     // });
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
-     // ********  Baba Farid Group Of Institutions    ************
+    // ********  Baba Farid Group Of Institutions    ************
     // doc.image(path.join(__dirname, "BFGI.png"), 0, 0, {
     //   width: 2000,
     //   height: 1414,
     // });
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
-    // ********  Baba Farid Group Of Institutions    ************
-    doc.image(path.join(__dirname, "SBBSU.jpg"), 0, 0, {
+    // // ********  Baba Farid Group Of Institutions    ************
+    // doc.image(path.join(__dirname, "SBBSU.jpg"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
+
+    // ********  Maharaja Ranjit Singh Punjab Technical University   ************
+    doc.image(path.join(__dirname, "MRSPTU.png"), 0, 0, {
       width: 2000,
       height: 1414,
     });
