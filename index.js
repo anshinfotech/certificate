@@ -159,11 +159,11 @@ server.post("/get-certificate", async (req, res) => {
     // doc.fontSize(100).text(name, 0, 720, { align: "center" });
 
     // ********  Gulzar Group Of Institutions    ************
-    // doc.image(path.join(__dirname, "GGI.jpg"), 0, 0, {
-    //   width: 2000,
-    //   height: 1414,
-    // });
-    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
+    doc.image(path.join(__dirname, "GGI.jpg"), 0, 0, {
+      width: 2000,
+      height: 1414,
+    });
+    doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
     // ********   Digital Marketing Arya College    ************
     // doc.image(path.join(__dirname, "DM_ARYA.png"), 0, 0, {
@@ -202,11 +202,11 @@ server.post("/get-certificate", async (req, res) => {
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
     // ********  Maharaja Ranjit Singh Punjab Technical University   ************
-    doc.image(path.join(__dirname, "MRSPTU.png"), 0, 0, {
-      width: 2000,
-      height: 1414,
-    });
-    doc.fontSize(75).text(name, 0, 720, { align: "center" });
+    // doc.image(path.join(__dirname, "MRSPTU.png"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
     // Finalize the PDF and end the stream
     doc.end();
