@@ -234,7 +234,7 @@ server.post("/get-certificate", async (req, res) => {
       width: 2000,
       height: 1414,
     });
-    doc.fontSize(75).text(name, 0, 720, {align:"center"});
+    doc.fontSize(65).text(name, 0, 650, {align:"center"});
 
     // Finalize the PDF and end the stream
     doc.end();
