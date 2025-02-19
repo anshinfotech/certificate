@@ -229,8 +229,8 @@ server.post("/get-certificate", async (req, res) => {
     // });
     // doc.fontSize(75).text(name, 0, 720, {align:"center"});
 
-    // ********  SCD Boys College    ************
-    doc.image(path.join(__dirname, "SBBSU.jpg"), 0, 0, {
+    // ********  Government College for Girls   ************
+    doc.image(path.join(__dirname, "certificate (8).pdf.jpg"), 0, 0, {
       width: 2000,
       height: 1414,
     });
