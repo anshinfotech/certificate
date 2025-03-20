@@ -293,7 +293,14 @@ server.post("/get-certificate", async (req, res) => {
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
     //LGC Machine Learning
-     doc.image(path.join(__dirname, "LKC.png"), 0, 0, {
+    //  doc.image(path.join(__dirname, "LKC.png"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
+
+     //LGC Machine Learning
+     doc.image(path.join(__dirname, "GCET_Shell.png"), 0, 0, {
       width: 2000,
       height: 1414,
     });
