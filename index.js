@@ -314,11 +314,20 @@ server.post("/get-certificate", async (req, res) => {
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
     // SBBSU Certficate
-     doc.image(path.join(__dirname, "SBBSU_Cert.png"), 0, 0, {
+    //  doc.image(path.join(__dirname, "SBBSU_Cert.png"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
+
+
+    // GGNIMT Certficate
+     doc.image(path.join(__dirname, "GGNIMT.png"), 0, 0, {
       width: 2000,
       height: 1414,
     });
     doc.fontSize(75).text(name, 0, 720, { align: "center" });
+    
 
     // Finalize the PDF and end the stream
     doc.end();
