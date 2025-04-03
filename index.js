@@ -135,7 +135,7 @@ server.post("/get-certificate", async (req, res) => {
     // Generate the certificate PDF based on the college
     // Use the appropriate college template
 
-     doc.image(path.join(__dirname, "PINT_Khanna.png"), 0, 0, {
+     doc.image(path.join(__dirname, "PIMT_DM.png"), 0, 0, {
       width: 2000,
       height: 1414,
     });
