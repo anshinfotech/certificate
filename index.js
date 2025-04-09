@@ -135,7 +135,13 @@ server.post("/get-certificate", async (req, res) => {
     // Generate the certificate PDF based on the college
     // Use the appropriate college template
 
-     doc.image(path.join(__dirname, "PIMT_DM.png"), 0, 0, {
+    //  doc.image(path.join(__dirname, "PIMT_DM.png"), 0, 0, {
+    //   width: 2000,
+    //   height: 1414,
+    // });
+    // doc.fontSize(75).text(name, 0, 720, { align: "center" });
+
+      doc.image(path.join(__dirname, "BGFI_Shell.png"), 0, 0, {
       width: 2000,
       height: 1414,
     });
