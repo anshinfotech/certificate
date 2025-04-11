@@ -141,7 +141,7 @@ server.post("/get-certificate", async (req, res) => {
     // });
     // doc.fontSize(75).text(name, 0, 720, { align: "center" });
 
-      doc.image(path.join(__dirname, "RIMT_AI.png"), 0, 0, {
+      doc.image(path.join(__dirname, "RIMT_CERT.png"), 0, 0, {
       width: 2000,
       height: 1414,
     });
